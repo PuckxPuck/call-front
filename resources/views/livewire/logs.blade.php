@@ -24,7 +24,7 @@
                     </td>
                     <td>{{ $log['number'] }}</td>
                     <td>{{\Carbon\Carbon::parse($log['date'])->format('m-d-Y')}}</td>
-                    <td>{{\Carbon\Carbon::parse($log['date'])->format('h:i')}}</td>
+                    <td>{{\Carbon\Carbon::parse($log['date'])->format('H:i')}}</td>
                     <td>{{\Carbon\CarbonInterval::seconds($log['duration'])->cascade()->forHumans()}}</td>
                     <td>
                         <select x-bind:disabled="!update" class="select w-full max-w-xs">

@@ -18,7 +18,7 @@ class Logs extends Component
     public function render()
     {
         $this->token = Session::get('token');
-        $response = Http::withToken($this->token)->get('http://'.env('API_URL').'/api/logs/getall');
+        $response = Http::withToken($this->token)->get('https://'.env('API_URL').'/api/logs/getall');
         $this->logs = $response->json()["calls"];
 
         // foreach($this->logs as $log)
@@ -39,7 +39,7 @@ class Logs extends Component
     {
         $this->token = Session::get('token');
         // dd($this->tag);
-        $response = Http::withToken($this->token)->post('http://' . env('API_URL') . '/api/logs/update/' . $id, [
+        $response = Http::withToken($this->token)->post('https://' . env('API_URL') . '/api/logs/update/' . $id, [
             'tag' => $this->tag,
             'class' => $this->class,
             'note' => $this->note

@@ -33,7 +33,7 @@ class Login extends Component
 
     try
     {
-        $response = Http::post('http://'.env('API_URL').'/api/login', [
+        $response = Http::post('https://'.env('API_URL').'/api/login', [
             'email' => $this->email,
             'password' => $this->password
         ]);

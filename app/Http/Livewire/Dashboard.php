@@ -14,7 +14,7 @@ class Dashboard extends Component
     public function render()
     {
         $this->token = Session::get('token');
-        $response = Http::withToken($this->token)->get('http://' . env('API_URL') . '/api/logs/getall');
+        $response = Http::withToken($this->token)->get('https://' . env('API_URL') . '/api/logs/getall');
         $this->calls = $response->json()["calls"];
 
         $this->totalCalls = count($this->calls);

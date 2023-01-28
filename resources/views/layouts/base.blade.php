@@ -10,6 +10,7 @@
         <title>Call Eater Admin</title>
     @endif
 
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ url(asset('favicon.ico')) }}">
 
@@ -34,7 +35,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.0/chart.min.js"
         integrity="sha512-qKyIokLnyh6oSnWsc5h21uwMAQtljqMZZT17CIMXuCQNIfFSFF4tJdMOaJHL9fQdJUANid6OB6DRR0zdHrbWAw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://unpkg.com/alpinejs" defer></script>
+        {{-- <script src="https://unpkg.com/alpinejs" defer></script> --}}
 
         <script src="path/to/chartjs/dist/chart.umd.js"></script>
         <script>

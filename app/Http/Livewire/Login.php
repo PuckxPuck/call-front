@@ -16,7 +16,7 @@ class Login extends Component
     public function render()
     {
         Session::forget('token');
-        Session::forget('authenticated');
+        Session::put('authenticated', false);
         Session::forget('user');
 
         return view('livewire.login');

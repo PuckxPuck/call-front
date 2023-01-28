@@ -1,9 +1,10 @@
 @extends('layouts.base')
 
 @section('body')
+@if(Session::get('authenticated') == true)
     <div class="flex">
         <div
-            class="h-screen drawer-side bg-[#8900C4] text-neutral-content p-3 space-y-2 w-60 dark:bg-gray-900 dark:text-gray-100">
+            class="h-[107vh] drawer-side bg-[#8900C4] text-neutral-content p-3 space-y-2 w-60 dark:bg-gray-900 dark:text-gray-100">
             <div class="flex items-center p-2 space-x-4">
                 <img src="img/bmlogo.png" alt="" class="">
                 {{-- <div>
@@ -84,7 +85,7 @@
                 <ul class="pt-4 pb-2 space-y-1 text-sm">
 
                     <li>
-                        <a rel="noopener noreferrer" href="#" class="flex items-center p-2 space-x-3 rounded-md">
+                        <a  rel="noopener noreferrer" href="{{route('login')}}" class="flex items-center p-2 space-x-3 rounded-md">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
                                 class="w-5 h-5 fill-current dark:text-gray-400">
                                 <path
@@ -132,9 +133,61 @@
                 @isset($slot)
                     {{ $slot }}
                 @endisset
+
+                <div x-data="{show:false, progress:0}" 
+                x-on:notify.window="show = true; setTimeout(() => { show = false }, 2000)" 
+                x-show="show" 
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 transform scale-90"
+                x-transition:enter-end="opacity-100 transform scale-100"
+                x-transition:leave="transition ease-in duration-300"
+                x-transition:leave-start="opacity-100 transform scale-100"
+                x-transition:leave-end="opacity-0 transform scale-90"
+
+                class="fixed overflow-x-hidden h-20 mt-10 mr-5 inset-0 z-50 flex justify-end">
+                    <div class="flex flex-col justify-center w-full max-w-xs p-4 mb-4 text-black bg-[#d6a0ee] rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+                        role="alert">
+                        <div class="flex items-center">
+                        <div
+                            class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-purple-500 bg-purple-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="sr-only">Check icon</span>
+                        </div>
+                        <div class="ml-3 text-sm font-normal">Successfully Updated</div>
+                        <button @click="show = !show" type="button"
+                            class="ml-auto -mx-1.5 -my-1.5 bg-[#d6a0ee] text-white hover:text-white rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-[#8900C4] inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                            data-dismiss-target="#toast-success" aria-label="Close">
+                            <span class="sr-only">Close</span>
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
+    @endif
+
+    @if(Session::get('authenticated') == false)
+    <div class="w-full  bg-white">
+        @yield('content')
+
+        @isset($slot)
+            {{ $slot }}
+        @endisset
+    </div>
+    @endif
 @endsection
 
 {{-- 

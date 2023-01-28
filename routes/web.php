@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Logs;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Reports;
-
+use App\Http\Livewire\Register;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,8 @@ use App\Http\Livewire\Reports;
 // Route::view('/', 'welcome')->name('home')->middleware('auth:sanctum');
 
 Route::get('/login', Login::class)->name('login');
+Route::get('/register', Register::class)->name('register');
+
 
 Route::middleware('nauth')->group(function () {
     // Route::view('/', 'welcome')->name('home');
